@@ -10,50 +10,90 @@ namespace Interview_Refactor1
             // it takes 3 apples, 2 lbs of sugar and 1 pound of flour to make 1 apple pie
             // this is intended to run on .NET Core
 
+            int numApples = 0;
+            int sugarLbs = 0;
+            int flourLbs = 0;
             do
             {
                 Console.WriteLine("How many apples do you have?");
                 var apples = Console.ReadLine();
+                if (!ParseInputStrings(apples, "apples", out numApples))
+                    continue;
 
                 Console.WriteLine("How much sugar do you have?");
                 var sugar = Console.ReadLine();
+                if (!ParseInputStrings(sugar, "sugar", out sugarLbs))
+                    continue;
 
                 Console.WriteLine("How many pounds of flour do you have?");
-                var _PoundsOfflour = Console.ReadLine();
+                var flour = Console.ReadLine();
+                if (!ParseInputStrings(flour, "flour", out flourLbs))
+                    continue;
 
                 Console.WriteLine("You can make:");
-                utility.Calc(apples, sugar, _PoundsOfflour);
 
+                var result = ApplePieCalculator.CalculateNumPies(numApples, sugarLbs, flourLbs);
+
+                Console.WriteLine(result);
                 Console.WriteLine("\n\nEnter to calculate, 'q' to quit!");
-            } while (!string.Equals(Console.ReadLine(), "Q"));
+                
+            } while (!string.Equals(Console.ReadLine(), "Q", StringComparison.OrdinalIgnoreCase));
 
+        }
+
+        private static bool ParseInputStrings(string input, string ingredientName, out int result)
+        {
+            bool success = int.TryParse(input, out result);
+
+            if (!success)
+            {
+                Console.WriteLine($"I do not understand \"{input}\" {ingredientName}. What does that even mean?  Come on MAN!!!");
+                Console.WriteLine("Let's try again please, from the beginning.  Hit <enter>");
+            }
+
+            return success;
         }
     }
 
-    public static class utility
+
+
+    public static class ApplePieCalculator
     {
-        public static void Calc(string a, string b, string c)
+        const int applesPerPie = 3;
+        const int sugaLbsPerPie = 2;
+
+        const int flourLbsPerPie = 1;
+        public static PieRecipeCalculationResults CalculateNumPies(int numApples, int sugarLbs, int flourLbs)
         {
             try
             {
-                var maxApples = (int.Parse(a) / 3);
-                var x = int.Parse(b) / 2;
-                var _flourLeft =  int.Parse(c);
-                var maxPies = Math.Min(Math.Min(maxApples, x), _flourLeft);
-               
+                var numPiesbyApple = numApples / applesPerPie;
+                var numPiesbySugar = sugarLbs / sugaLbsPerPie;
+                var numPiesbyFlour = flourLbs / flourLbsPerPie;
+                var maxPies = Math.Min(Math.Min(numPiesbyApple, numPiesbySugar), numPiesbyFlour);
+
                 Console.WriteLine(maxPies + " apple pies!");
 
-                var leftOverA = int.Parse(a) - (maxPies * 3);
-                var leftOverB = int.Parse(b) - (maxPies * 2);
-                var leftOverC = int.Parse(c) - maxPies;
+                var leftOverApples = numApples - (maxPies * applesPerPie);
+                var leftOverSugarLbs = sugarLbs - (maxPies * sugaLbsPerPie);
+                var leftOverFlourLbs = flourLbs - (maxPies * flourLbsPerPie);
 
-                Console.WriteLine(leftOverA + " apple(s) left over, " + leftOverB + " lbs sugar left over, " + leftOverC + " lbs flour left over.");
+                PieRecipeCalculationResults results = new PieRecipeCalculationResults()
+                {
+                    NumApples = numApples,
+                    NumPies = maxPies,
+                    LeftOverApples = leftOverApples,
+                    LeftOverFlourLbs = leftOverFlourLbs,
+                    LeftOverSugarLbs = leftOverSugarLbs
+                };
+
+                return results;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("error");
+                Console.WriteLine(ex);
+                throw;
             }
-
         }
     }
 }
