@@ -13,20 +13,23 @@ namespace Interview_Refactor1
             int numApples = 0;
             int sugarLbs = 0;
             int flourLbs = 0;
+            string? apples = "";
+            string? sugar = "";
+            string? flour = "";
             do
             {
                 Console.WriteLine("How many apples do you have?");
-                var apples = Console.ReadLine();
+                apples = Console.ReadLine();
                 if (!ParseInputStrings(apples, "apples", out numApples))
                     continue;
 
                 Console.WriteLine("How much sugar do you have?");
-                var sugar = Console.ReadLine();
+                sugar = Console.ReadLine();
                 if (!ParseInputStrings(sugar, "sugar", out sugarLbs))
                     continue;
 
                 Console.WriteLine("How many pounds of flour do you have?");
-                var flour = Console.ReadLine();
+                flour = Console.ReadLine();
                 if (!ParseInputStrings(flour, "flour", out flourLbs))
                     continue;
 
@@ -36,13 +39,19 @@ namespace Interview_Refactor1
 
                 Console.WriteLine(result);
                 Console.WriteLine("\n\nEnter to calculate, 'q' to quit!");
-                
+
             } while (!string.Equals(Console.ReadLine(), "Q", StringComparison.OrdinalIgnoreCase));
 
         }
 
         private static bool ParseInputStrings(string input, string ingredientName, out int result)
         {
+            if(string.IsNullOrEmpty(input))
+            {
+                result = 0;
+                return false;
+            }
+
             bool success = int.TryParse(input, out result);
 
             if (!success)
@@ -61,7 +70,6 @@ namespace Interview_Refactor1
     {
         const int applesPerPie = 3;
         const int sugaLbsPerPie = 2;
-
         const int flourLbsPerPie = 1;
         public static PieRecipeCalculationResults CalculateNumPies(int numApples, int sugarLbs, int flourLbs)
         {
