@@ -13,18 +13,21 @@ namespace Interview_Refactor1
             ApplePieRecipe applePie = new ApplePieRecipe();
             do
             {
-                foreach(Ingredient ingredient in applePie.Ingredients){
+                foreach (Ingredient ingredient in applePie.Ingredients)
+                {
                     Console.WriteLine($"Enter the {ingredient.Units} of {ingredient.Name}");
                     var amountEntered = Console.ReadLine();
                     int amount;
-                    if (!ParseInputStrings(amountEntered, ingredient.Name, out amount)){
-                    continue;
+                    if (!ParseInputStrings(amountEntered, ingredient.Name, out amount))
+                    {
+                        continue;
                     }
-                    else{
+                    else
+                    {
                         ingredient.Amount = amount;
                     }
                 }
-                
+
                 int pieCount = PieCalculator.CalculateNumPies(applePie);
                 PieCalculator.PrintLeftovers(applePie, pieCount);
                 Console.WriteLine("\n\nEnter to calculate, 'q' to quit!");
@@ -35,7 +38,7 @@ namespace Interview_Refactor1
 
         private static bool ParseInputStrings(string input, string ingredientName, out int result)
         {
-            if(string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
             {
                 result = 0;
                 return false;
@@ -55,5 +58,5 @@ namespace Interview_Refactor1
 
 
 
-    
+
 }

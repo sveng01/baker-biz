@@ -10,7 +10,7 @@ namespace Interview_Refactor1
             {
                 var maxPies = recipe.Ingredients.Min(x => x.CalculateWholePies());
                 Console.WriteLine("You can make:");
-                Console.WriteLine(maxPies + " "  + recipe.Name);
+                Console.WriteLine(maxPies + " " + recipe.Name);
 
                 return maxPies;
             }
@@ -21,10 +21,13 @@ namespace Interview_Refactor1
             }
         }
 
-        public static void PrintLeftovers(IPieRecipe recipe, int pieCount){
+        public static void PrintLeftovers(IPieRecipe recipe, int pieCount)
+        {
 
-            if(recipe != null && recipe.Ingredients.Any()){
-                foreach(Ingredient ingredient in recipe.Ingredients){
+            if (recipe != null && recipe.Ingredients.Any())
+            {
+                foreach (Ingredient ingredient in recipe.Ingredients)
+                {
                     Console.WriteLine($"{ingredient.CalculateLeftovers(pieCount)} {ingredient.Units}(s) {ingredient.Name} left over.");
                 }
             }

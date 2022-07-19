@@ -4,11 +4,12 @@ namespace Interview_Refactor1
 {
     public class ApplePieRecipe : IPieRecipe
     {
-        public IList<Ingredient> Ingredients {get; private set;}
+        public IList<Ingredient> Ingredients { get; private set; }
 
-        public string Name {get; private set;}
+        public string Name { get; private set; }
 
-        public ApplePieRecipe(){
+        public ApplePieRecipe()
+        {
             Name = "Apple Pie";
             Ingredients = new List<Ingredient>(){
                 new Ingredient("apples", 3, "#"),
