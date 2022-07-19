@@ -34,8 +34,13 @@ namespace Interview_Refactor1
             return numberOfPies;
         }
 
+
         public int CalculateLeftovers(int numberOfPies){
             int leftOvers = Amount - (numberOfPies * AmountPerPie);
+
+            if(leftOvers < 0)
+                leftOvers = 0;
+
             return leftOvers;
         }
 
