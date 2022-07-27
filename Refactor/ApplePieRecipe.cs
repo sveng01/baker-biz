@@ -12,10 +12,10 @@ namespace Interview_Refactor1
         {
             Name = "Apple Pie";
             Ingredients = new List<Ingredient>(){
-                new Ingredient("apples", 3, "#"),
-                new Ingredient("sugar", 2, "lbs"),
-                new Ingredient("flour", 1, "lbs"),
-                new Ingredient("cinnamon", 1, "tsp", false),
+                new Ingredient(IngredientType.Apples, 3, Units.number),
+                new Ingredient(IngredientType.Sugar, 2, Units.lbs),
+                new Ingredient(IngredientType.Flour, 1, Units.lbs),
+                new Ingredient(IngredientType.Cinnamon, 1, Units.tsp, false),
             };
         }
 
