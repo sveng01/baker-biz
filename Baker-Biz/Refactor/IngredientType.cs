@@ -4,6 +4,7 @@ namespace BakerBiz
     Apples,
     Sugar,
     Flour,
-    Cinnamon
+    Cinnamon,
+    Butter
 }
 }

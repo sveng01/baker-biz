@@ -15,6 +15,17 @@ public class IngredientTests
     }
 
     [Fact]
+    public void CalculateWholePies_TestDoubleRequired()
+    {
+        Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75, Units.sticks);
+        ingredient.Amount = 7;
+        int pies = ingredient.CalculateWholePies();
+
+        Assert.True( pies == 9, $"Failed to calculate 3 pies. Calculated {pies}");
+
+    }
+
+    [Fact]
     public void CalculateWholePies_TestNotRequired()
     {
         Ingredient ingredient = new Ingredient(IngredientType.Apples, 2, Units.number, false);
@@ -30,5 +41,13 @@ public class IngredientTests
         ingredient.Amount = 11;
 
         Assert.True(ingredient.CalculateLeftovers(3) == 2, "Failed to calculate 2 lbs leftover");
+    }
+
+    [Fact]
+    public void CalculateLeftovers_TestDouble(){
+        Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75, Units.sticks, true);
+        ingredient.Amount = 11;
+
+        Assert.True(ingredient.CalculateLeftovers(11) == 2.75, "Failed to calculate 2.75 sticks leftover");
     }
 }

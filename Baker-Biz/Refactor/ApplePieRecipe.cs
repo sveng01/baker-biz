@@ -16,6 +16,7 @@ namespace BakerBiz
                 new Ingredient(IngredientType.Sugar, 2, Units.lbs),
                 new Ingredient(IngredientType.Flour, 1, Units.lbs),
                 new Ingredient(IngredientType.Cinnamon, 1, Units.tsp, false),
+                new Ingredient(IngredientType.Butter, (6/8), Units.sticks, false),
             };
         }
 
