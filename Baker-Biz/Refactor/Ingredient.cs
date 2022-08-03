@@ -1,6 +1,6 @@
 using System;
 
-namespace Interview_Refactor1
+namespace BakerBiz
 {
     public class Ingredient
     {
@@ -22,6 +22,7 @@ namespace Interview_Refactor1
         {
             if (Amount == 0 && !Required)
             {
+                //return Max value so that we know this is not part of the calculation for max number of pies
                 return int.MaxValue;
             }
 

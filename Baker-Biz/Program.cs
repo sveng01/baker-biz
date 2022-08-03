@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Interview_Refactor1
+namespace BakerBiz
 {
     class Program
     {
