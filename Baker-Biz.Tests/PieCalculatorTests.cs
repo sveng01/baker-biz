@@ -11,7 +11,8 @@ public class PieCalculatorTests{
         recipe.Ingredients.Single(x => x.Type == IngredientType.Apples).Amount = 6;
         recipe.Ingredients.Single(x => x.Type == IngredientType.Sugar).Amount = 4; 
         recipe.Ingredients.Single(x => x.Type == IngredientType.Flour).Amount = 2;
-        recipe.Ingredients.Single(x => x.Type == IngredientType.Cinnamon).Amount = 2;       
+        recipe.Ingredients.Single(x => x.Type == IngredientType.Cinnamon).Amount = 2;
+        recipe.Ingredients.Single(x => x.Type == IngredientType.Butter).Amount = 2;
         int numPies = PieCalculator.CalculateNumPies(recipe);
         Assert.True(numPies == 2, "Failed to calculate number of pies");
     }
@@ -23,7 +24,8 @@ public class PieCalculatorTests{
         recipe.Ingredients.Single(x => x.Type == IngredientType.Apples).Amount = 6;
         recipe.Ingredients.Single(x => x.Type == IngredientType.Sugar).Amount = 4; 
         recipe.Ingredients.Single(x => x.Type == IngredientType.Flour).Amount = 2;
-        recipe.Ingredients.Single(x => x.Type == IngredientType.Cinnamon).Amount = 0;       
+        recipe.Ingredients.Single(x => x.Type == IngredientType.Cinnamon).Amount = 0;
+        recipe.Ingredients.Single(x => x.Type == IngredientType.Butter).Amount = 2;
         int numPies = PieCalculator.CalculateNumPies(recipe);
         Assert.True(numPies == 2, "Failed to calculate number of pies");
     }

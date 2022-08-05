@@ -17,11 +17,11 @@ public class IngredientTests
     [Fact]
     public void CalculateWholePies_TestDoubleRequired()
     {
-        Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75, Units.sticks);
-        ingredient.Amount = 7;
+        Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75d, Units.sticks);
+        ingredient.Amount = 2;
         int pies = ingredient.CalculateWholePies();
 
-        Assert.True( pies == 9, $"Failed to calculate 3 pies. Calculated {pies}");
+        Assert.True( pies == 2, $"Failed to calculate 2 pies. Calculated {pies}");
 
     }
 
