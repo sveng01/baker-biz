@@ -12,13 +12,35 @@ namespace BakerBiz
             // it takes 3 apples, 2 lbs of sugar and 1 pound of flour to make 1 apple pie
             // this is intended to run on .NET Core
 
-            ApplePieRecipe applePie = new ApplePieRecipe();
+            IPieRecipe? pie;
+
             do
             {
-                foreach (Ingredient ingredient in applePie.Ingredients)
+                Console.WriteLine($"Enter 1 for apple pie, 2 for blueberry cobbler");
+                var recipeEntered = Console.ReadLine();
+                int recipeNumber = 0;
+                bool success = int.TryParse(recipeEntered, out recipeNumber);
+
+                switch(recipeNumber)
+                {
+                    case 1:
+                        pie = new ApplePieRecipe();
+                        break;
+                    case 2:
+                        pie = new BlueberryCobbler();
+                        break;
+                    default:
+                        pie = null;
+                        break;
+                }
+
+                if(pie == null) //ask again
+                    continue;
+
+                foreach (Ingredient ingredient in pie.Ingredients)
                 {
                     bool inputAmountIsValid = false;
-                    while(!inputAmountIsValid)
+                    while (!inputAmountIsValid)
                     {
                         Console.WriteLine($"Enter the {ingredient.Units} of {ingredient.Type}");
                         var amountEntered = Console.ReadLine();
@@ -31,12 +53,12 @@ namespace BakerBiz
                     }
                 }
 
-                int pieCount = PieCalculator.CalculateNumPies(applePie);
+                int pieCount = PieCalculator.CalculateNumPies(pie);
 
                 Console.WriteLine("You can make:");
-                Console.WriteLine(pieCount + " " + applePie.Name);
+                Console.WriteLine(pieCount + " " + pie.Name);
 
-                PrintLeftovers(applePie, pieCount);
+                PrintLeftovers(pie, pieCount);
                 Console.WriteLine("\n\nEnter to calculate, 'q' to quit!");
 
             } while (!string.Equals(Console.ReadLine(), "Q", StringComparison.OrdinalIgnoreCase));

@@ -19,7 +19,5 @@ namespace BakerBiz.Model
                 new Ingredient(IngredientType.Butter, 0.75d, Units.sticks),
             };
         }
-
-
     }
 }
