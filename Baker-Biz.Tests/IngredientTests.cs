@@ -1,4 +1,5 @@
 using BakerBiz;
+using BakerBiz.Model;
 
 namespace Baker_Biz.Tests;
 

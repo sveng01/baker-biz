@@ -1,6 +1,7 @@
 using System;
+using BakerBiz.Model;
 
-namespace BakerBiz
+namespace BakerBiz.Utilities
 {
     public static class PieCalculator
     {
