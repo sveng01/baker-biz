@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Interview_Refactor1
+namespace BakerBiz
 {
     class Program
     {
@@ -15,16 +15,17 @@ namespace Interview_Refactor1
             {
                 foreach (Ingredient ingredient in applePie.Ingredients)
                 {
-                    Console.WriteLine($"Enter the {ingredient.Units} of {ingredient.Type}");
-                    var amountEntered = Console.ReadLine();
-                    int amount;
-                    if (!ParseInputStrings(amountEntered, ingredient.Type, out amount))
+                    bool inputAmountIsValid = false;
+                    while(!inputAmountIsValid)
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        ingredient.Amount = amount;
+                        Console.WriteLine($"Enter the {ingredient.Units} of {ingredient.Type}");
+                        var amountEntered = Console.ReadLine();
+                        int amount;
+                        inputAmountIsValid = ParseInputStrings(amountEntered, ingredient.Type, out amount);
+                        if (inputAmountIsValid)
+                        {
+                            ingredient.Amount = amount;
+                        }
                     }
                 }
 
@@ -64,7 +65,7 @@ namespace Interview_Refactor1
             if (!success)
             {
                 Console.WriteLine($"I do not understand \"{input}\" {ingredientType}. What does that even mean?  Come on MAN!!!");
-                Console.WriteLine("Let's try again please, from the beginning.  Hit <enter>");
+                Console.WriteLine("Let's try again please.");
             }
 
             return success;
