@@ -1,10 +1,6 @@
-namespace BakerBiz
-{
-    public enum IngredientType{
+public enum IngredientType{
     Apples,
     Sugar,
     Flour,
-    Cinnamon,
-    Butter
-}
+    Cinnamon
 }

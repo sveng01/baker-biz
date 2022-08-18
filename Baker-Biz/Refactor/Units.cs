@@ -1,9 +1,5 @@
-namespace BakerBiz
-{public enum Units{
+public enum Units{
     number,
     lbs,
-    tsp,
-    tbsp,
-    sticks
-}
+    tsp
 }
