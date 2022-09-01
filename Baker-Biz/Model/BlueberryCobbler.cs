@@ -2,7 +2,7 @@ using System;
 
 namespace BakerBiz.Model;
 
-public class BlueberryCobbler : IPieRecipe
+public class BlueberryCobbler : IRecipe
 {
         public IList<Ingredient> Ingredients { get; private set; }
 

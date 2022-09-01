@@ -6,33 +6,33 @@ namespace Baker_Biz.Tests;
 public class IngredientTests
 {
     [Fact]
-    public void CalculateWholePies_TestRequired()
+    public void CalculateWholeMenuItems_TestRequired()
     {
         Ingredient ingredient = new Ingredient(IngredientType.Apples, 2, Units.number);
         ingredient.Amount = 7;
 
-        Assert.True(ingredient.CalculateWholePies() == 3, "Failed to calculate 3 pies.");
+        Assert.True(ingredient.CalculateWholeMenuItems() == 3, "Failed to calculate 3 pies.");
 
     }
 
     [Fact]
-    public void CalculateWholePies_TestDoubleRequired()
+    public void CalculateWholeMenuItems_TestDoubleRequired()
     {
         Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75d, Units.sticks);
         ingredient.Amount = 2;
-        int pies = ingredient.CalculateWholePies();
+        int pies = ingredient.CalculateWholeMenuItems();
 
         Assert.True( pies == 2, $"Failed to calculate 2 pies. Calculated {pies}");
 
     }
 
     [Fact]
-    public void CalculateWholePies_TestNotRequired()
+    public void CalculateWholeMenuItems_TestNotRequired()
     {
         Ingredient ingredient = new Ingredient(IngredientType.Apples, 2, Units.number, false);
         ingredient.Amount = 0;
 
-        Assert.True(ingredient.CalculateWholePies() == int.MaxValue, "Failed to handle optional ingredient.");
+        Assert.True(ingredient.CalculateWholeMenuItems() == int.MaxValue, "Failed to handle optional ingredient.");
 
     }
 

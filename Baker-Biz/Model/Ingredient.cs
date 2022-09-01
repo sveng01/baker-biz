@@ -5,20 +5,20 @@ namespace BakerBiz.Model
     public class Ingredient
     {
         public IngredientType Type { get; private set; }
-        public double AmountPerPie { get; private set; }
+        public double AmountPerItem { get; private set; }
         public int Amount { get; set; }
         public Units Units { get; private set; }
         public bool Required { get; private set; }
 
-        public Ingredient(IngredientType type, double perPieAmount, Units units, bool required = true)
+        public Ingredient(IngredientType type, double perItemAmount, Units units, bool required = true)
         {
             Type = type;
-            AmountPerPie = perPieAmount;
+            AmountPerItem = perItemAmount;
             Units = units;
             Required = required;
         }
 
-        public int CalculateWholePies()
+        public int CalculateWholeMenuItems()
         {
             if (Amount == 0 && !Required)
             {
@@ -26,18 +26,18 @@ namespace BakerBiz.Model
                 return int.MaxValue;
             }
 
-            int numberOfPies = 0;
-            if (AmountPerPie > 0)
+            int numberOfItems = 0;
+            if (AmountPerItem > 0)
             {
-                double pies = (Amount / AmountPerPie);
-                numberOfPies = (int)Math.Floor(pies);
+                double items = (Amount / AmountPerItem);
+                numberOfItems = (int)Math.Floor(items);
             }
-            return numberOfPies;
+            return numberOfItems;
         }
 
-        public double CalculateLeftovers(int numberOfPies)
+        public double CalculateLeftovers(int numberOfItems)
         {
-            double leftOvers = Amount - (numberOfPies * AmountPerPie);
+            double leftOvers = Amount - (numberOfItems * AmountPerItem);
 
             if (leftOvers < 0)
                 leftOvers = 0;

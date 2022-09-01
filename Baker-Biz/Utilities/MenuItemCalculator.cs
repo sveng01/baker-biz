@@ -3,14 +3,14 @@ using BakerBiz.Model;
 
 namespace BakerBiz.Utilities
 {
-    public static class PieCalculator
+    public static class MenuItemCalculator
     {
-        public static int CalculateNumPies(IPieRecipe recipe)
+        public static int CalculateNumMenuItems(IRecipe recipe)
         {
             try
             {
-                var maxPies = recipe.Ingredients.Min(x => x.CalculateWholePies());
-                return maxPies;
+                var maxItems = recipe.Ingredients.Min(x => x.CalculateWholeMenuItems());
+                return maxItems;
             }
             catch (Exception ex)
             {
