@@ -1,8 +1,8 @@
 using System;
 
-namespace BakerBiz
+namespace BakerBiz.Model
 {
-    public class ApplePieRecipe : IPieRecipe
+    public class ApplePieRecipe : IRecipe
     {
         public IList<Ingredient> Ingredients { get; private set; }
 
@@ -19,7 +19,5 @@ namespace BakerBiz
                 new Ingredient(IngredientType.Butter, 0.75d, Units.sticks),
             };
         }
-
-
     }
 }

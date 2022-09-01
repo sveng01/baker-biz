@@ -1,8 +1,8 @@
 using System;
 
-namespace BakerBiz
+namespace BakerBiz.Model
 {
-    public interface IPieRecipe
+    public interface IRecipe
     {
         IList<Ingredient> Ingredients { get; }
         string Name { get; }

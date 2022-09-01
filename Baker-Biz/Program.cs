@@ -1,4 +1,6 @@
 ﻿using System;
+using BakerBiz.Model;
+using BakerBiz.Utilities;
 
 namespace BakerBiz
 {
@@ -10,13 +12,19 @@ namespace BakerBiz
             // it takes 3 apples, 2 lbs of sugar and 1 pound of flour to make 1 apple pie
             // this is intended to run on .NET Core
 
-            ApplePieRecipe applePie = new ApplePieRecipe();
+            IRecipe? menuItem;
+
             do
             {
-                foreach (Ingredient ingredient in applePie.Ingredients)
+                menuItem = ChooseMenuItem();
+
+                if (menuItem == null) //ask again
+                    continue;
+
+                foreach (Ingredient ingredient in menuItem.Ingredients)
                 {
                     bool inputAmountIsValid = false;
-                    while(!inputAmountIsValid)
+                    while (!inputAmountIsValid)
                     {
                         Console.WriteLine($"Enter the {ingredient.Units} of {ingredient.Type}");
                         var amountEntered = Console.ReadLine();
@@ -29,19 +37,43 @@ namespace BakerBiz
                     }
                 }
 
-                int pieCount = PieCalculator.CalculateNumPies(applePie);
+                int itemCount = MenuItemCalculator.CalculateNumMenuItems(menuItem);
 
                 Console.WriteLine("You can make:");
-                Console.WriteLine(pieCount + " " + applePie.Name);
+                Console.WriteLine(itemCount + " " + menuItem.Name);
 
-                PrintLeftovers(applePie, pieCount);
+                PrintLeftovers(menuItem, itemCount);
                 Console.WriteLine("\n\nEnter to calculate, 'q' to quit!");
 
             } while (!string.Equals(Console.ReadLine(), "Q", StringComparison.OrdinalIgnoreCase));
 
         }
 
-        private static void PrintLeftovers(IPieRecipe recipe, int pieCount)
+        private static IRecipe? ChooseMenuItem()
+        {
+            IRecipe? pie;
+            Console.WriteLine($"Enter 1 for apple pie, 2 for blueberry cobbler");
+            var recipeEntered = Console.ReadLine();
+            int recipeNumber = 0;
+            bool success = int.TryParse(recipeEntered, out recipeNumber);
+
+            switch (recipeNumber)
+            {
+                case 1:
+                    pie = new ApplePieRecipe();
+                    break;
+                case 2:
+                    pie = new BlueberryCobbler();
+                    break;
+                default:
+                    pie = null;
+                    break;
+            }
+
+            return pie;
+        }
+
+        private static void PrintLeftovers(IRecipe recipe, int pieCount)
         {
             if (recipe != null && recipe.Ingredients.Any())
             {
