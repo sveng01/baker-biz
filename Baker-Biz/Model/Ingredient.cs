@@ -42,7 +42,7 @@ namespace BakerBiz.Model
             if (leftOvers < 0)
                 leftOvers = 0;
 
-            return leftOvers;
+            return Math.Round(leftOvers, 2);
         }
     }
 }

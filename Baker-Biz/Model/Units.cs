@@ -7,6 +7,8 @@ namespace BakerBiz.Model
         tsp,
         sticks,
         cup,
-        tbsp
+        tbsp,
+        grams,
+        bags
     }
 }
