@@ -9,6 +9,8 @@ namespace BakerBiz.Model
         Butter,
         Blueberries,
         LemonZest,
-        Milk
+        Milk,
+        Espresso,
+        PourOverCoffee
     }
 }

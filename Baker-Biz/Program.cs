@@ -51,8 +51,12 @@ namespace BakerBiz
 
         private static IRecipe? ChooseMenuItem()
         {
-            IRecipe? pie;
-            Console.WriteLine($"Enter 1 for apple pie, 2 for blueberry cobbler");
+            IRecipe? menuItem;
+            Console.WriteLine("Enter:"); 
+            Console.WriteLine("1 for apple pie");
+            Console.WriteLine("2 for blueberry cobbler");
+            Console.WriteLine("3 for cups of Espresso");
+            Console.WriteLine("4 for cups of Pour Over Coffee");
             var recipeEntered = Console.ReadLine();
             int recipeNumber = 0;
             bool success = int.TryParse(recipeEntered, out recipeNumber);
@@ -60,17 +64,23 @@ namespace BakerBiz
             switch (recipeNumber)
             {
                 case 1:
-                    pie = new ApplePieRecipe();
+                    menuItem = new ApplePieRecipe();
                     break;
                 case 2:
-                    pie = new BlueberryCobbler();
+                    menuItem = new BlueberryCobbler();
+                    break;
+                case 3:
+                    menuItem = new EspressoCoffee();
+                    break;                
+                case 4:
+                    menuItem = new PourOverCoffee();
                     break;
                 default:
-                    pie = null;
+                    menuItem = null;
                     break;
             }
 
-            return pie;
+            return menuItem;
         }
 
         private static void PrintLeftovers(IRecipe recipe, int pieCount)
