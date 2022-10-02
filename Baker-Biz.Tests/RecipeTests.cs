@@ -9,11 +9,6 @@ public class RecipeTests
 {
     [Fact]
     public void RecipeSerializationTests(){
-        ApplePieRecipe recipe = new ApplePieRecipe();
-
-        string jsonString = JsonSerializer.Serialize(recipe);
-
-            Console.WriteLine(jsonString);
 
     }
 }
