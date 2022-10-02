@@ -1,6 +1,9 @@
 ﻿using System;
 using BakerBiz.Model;
 using BakerBiz.Utilities;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace BakerBiz
 {
@@ -13,10 +16,11 @@ namespace BakerBiz
             // this is intended to run on .NET Core
 
             IRecipe? menuItem;
+            RecipeDataAccess dataAccess = new RecipeDataAccess();
 
             do
             {
-                menuItem = ChooseMenuItem();
+                menuItem = ChooseMenuItem(dataAccess);
 
                 if (menuItem == null) //ask again
                     continue;
@@ -49,37 +53,20 @@ namespace BakerBiz
 
         }
 
-        private static IRecipe? ChooseMenuItem()
+        private static IRecipe? ChooseMenuItem(RecipeDataAccess recipeDataAccess)
         {
-            IRecipe? menuItem;
-            Console.WriteLine("Enter:"); 
-            Console.WriteLine("1 for apple pie");
-            Console.WriteLine("2 for blueberry cobbler");
-            Console.WriteLine("3 for cups of Espresso");
-            Console.WriteLine("4 for cups of Pour Over Coffee");
+            IRecipe? menuItem = null;
+            Console.WriteLine("Enter:");
+
+            RecipeBase[] recipeList = recipeDataAccess.LoadRecipes();
+
+            for(int i = 1; i <= recipeList.Length; i++){
+                Console.WriteLine($"{i} for {recipeList[i-1].Name}");
+            }
             var recipeEntered = Console.ReadLine();
             int recipeNumber = 0;
             bool success = int.TryParse(recipeEntered, out recipeNumber);
-
-            switch (recipeNumber)
-            {
-                case 1:
-                    menuItem = new ApplePieRecipe();
-                    break;
-                case 2:
-                    menuItem = new BlueberryCobbler();
-                    break;
-                case 3:
-                    menuItem = new EspressoCoffee();
-                    break;                
-                case 4:
-                    menuItem = new PourOverCoffee();
-                    break;
-                default:
-                    menuItem = null;
-                    break;
-            }
-
+            menuItem = recipeList[recipeNumber -1];
             return menuItem;
         }
 

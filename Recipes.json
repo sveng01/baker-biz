@@ -1,0 +1,106 @@
+[
+  {
+    "Ingredients": [
+      {
+        "Type": "Apples",
+        "AmountPerItem": 3,
+        "Units": "number",
+        "Required": true
+      },
+      {
+        "Type": "Sugar",
+        "AmountPerItem": 2,
+        "Units": "lbs",
+        "Required": true
+      },
+      {
+        "Type": "Flour",
+        "AmountPerItem": 1,
+        "Units": "lbs",
+        "Required": true
+      },
+      {
+        "Type": "Cinnamon",
+        "AmountPerItem": 1,
+        "Units": "tsp",
+        "Required": false
+      },
+      {
+        "Type": "Butter",
+        "AmountPerItem": 0.75,
+        "Units": "sticks",
+        "Required": true
+      }
+    ],
+    "Name": "Apple Pie"
+  },
+  {
+    "Ingredients": [
+      {
+        "Type": "Blueberries",
+        "AmountPerItem": 4,
+        "Units": "cup",
+        "Required": true
+      },
+      {
+        "Type": "LemonZest",
+        "AmountPerItem": 1,
+        "Units": "number",
+        "Required": true
+      },
+      {
+        "Type": "Butter",
+        "AmountPerItem": 5,
+        "Units": "tbsp",
+        "Required": true
+      },
+      {
+        "Type": "Flour",
+        "AmountPerItem": 1,
+        "Units": "cup",
+        "Required": true
+      },
+      {
+        "Type": "Sugar",
+        "AmountPerItem": 1,
+        "Units": "cup",
+        "Required": true
+      },
+      {
+        "Type": "Milk",
+        "AmountPerItem": 1,
+        "Units": "cup",
+        "Required": true
+      },
+      {
+        "Type": "Cinnamon",
+        "AmountPerItem": 1,
+        "Units": "tsp",
+        "Required": true
+      }
+    ],
+    "Name": "Blueberry Cobbler"
+  },
+  {
+    "Ingredients": [
+      {
+        "Type": "Espresso",
+        "AmountPerItem": 0.003532008830022075,
+        "Units": "bags",
+        "Required": true
+      }
+    ],
+    "Name": "Espresso Coffee"
+  },
+  {
+    "Ingredients": [
+      {
+        "Type": "PourOverCoffee",
+        "AmountPerItem": 0.009713024282560706,
+        "Units": "bags",
+        "Required": true
+      }
+    ],
+    "Name": "Pour Over Coffee"
+  }
+]
