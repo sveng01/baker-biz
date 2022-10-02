@@ -1,14 +1,22 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace BakerBiz.Model
 {
     public class Ingredient
     {
-        public IngredientType Type { get; private set; }
-        public double AmountPerItem { get; private set; }
+        public IngredientType Type { get; set; }
+        public double AmountPerItem { get; set; }
+        [JsonIgnore]
         public int Amount { get; set; }
-        public Units Units { get; private set; }
-        public bool Required { get; private set; }
+        public Units Units { get; set; }
+        public bool Required { get; set; }
+
+        [JsonConstructor]
+        public Ingredient()
+        {
+
+        }
 
         public Ingredient(IngredientType type, double perItemAmount, Units units, bool required = true)
         {
