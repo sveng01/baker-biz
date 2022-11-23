@@ -5,32 +5,40 @@ using System.Text.Json.Serialization;
 
 namespace BakerBiz.Utilities
 {
-    public class RecipeDataAccess{
+    public class RecipeDataAccess
+    {
 
-        private const string fileName = "Recipes.json";
-        private JsonSerializerOptions serializationOptions = new JsonSerializerOptions{Converters ={new JsonStringEnumConverter()},  WriteIndented = true};
+        private const string fileName = "..\\Recipes.json";
+        private JsonSerializerOptions serializationOptions = new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() }, WriteIndented = true };
 
-        public RecipeDataAccess(){
+        public RecipeDataAccess()
+        {
         }
 
-        public void SaveRecipes(IList<IRecipe> recipes){
+        public void SaveRecipes(IList<IRecipe> recipes)
+        {
             string jsonString = JsonSerializer.Serialize(recipes, serializationOptions);
 
-            using(StreamWriter writer = new StreamWriter(fileName)){
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
                 writer.WriteLine(jsonString);
             }
         }
 
-        public RecipeBase[] LoadRecipes(){
+        public RecipeBase[] LoadRecipes()
+        {
 
-            if(File.Exists(fileName)){
-                using (StreamReader reader = new StreamReader(fileName)){
+            if (File.Exists(fileName))
+            {
+                using (StreamReader reader = new StreamReader(fileName))
+                {
                     string json = reader.ReadToEnd();
                     var list = JsonSerializer.Deserialize<List<RecipeBase>>(json, serializationOptions);
                     return list.ToArray();
                 }
             }
-            else{
+            else
+            {
                 throw new Exception("Could not find " + fileName);
             }
         }

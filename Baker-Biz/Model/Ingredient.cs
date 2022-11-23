@@ -8,7 +8,7 @@ namespace BakerBiz.Model
         public IngredientType Type { get; set; }
         public double AmountPerItem { get; set; }
         [JsonIgnore]
-        public int Amount { get; set; }
+        public double Amount { get; set; }
         public Units Units { get; set; }
         public bool Required { get; set; }
 
@@ -51,6 +51,12 @@ namespace BakerBiz.Model
                 leftOvers = 0;
 
             return Math.Round(leftOvers, 2);
+        }
+
+        public double CalculateAmount(int quantity)
+        {
+            Amount = quantity * AmountPerItem;
+            return Amount;
         }
     }
 }

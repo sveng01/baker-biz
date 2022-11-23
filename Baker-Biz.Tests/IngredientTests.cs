@@ -51,4 +51,14 @@ public class IngredientTests
 
         Assert.True(ingredient.CalculateLeftovers(11) == 2.75, "Failed to calculate 2.75 sticks leftover");
     }
+
+    [Fact]
+    public void CalculateAmount(){
+        Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75, Units.sticks, true);
+
+        double amount = ingredient.CalculateAmount(77);
+        Assert.Equal(amount, 57.75);
+        Assert.Equal(amount, ingredient.Amount);
+        
+    }
 }
