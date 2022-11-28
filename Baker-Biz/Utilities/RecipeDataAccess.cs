@@ -5,10 +5,16 @@ using System.Text.Json.Serialization;
 
 namespace BakerBiz.Utilities
 {
-    public class RecipeDataAccess
+    public interface IRecipeDataAccess
+    {
+        RecipeBase[] LoadRecipes();
+        void SaveRecipes(IList<IRecipe> recipes);
+    }
+
+    public class RecipeDataAccess : IRecipeDataAccess
     {
 
-        private const string fileName = "..\\Recipes.json";
+        private const string fileName = "Recipes.json";
         private JsonSerializerOptions serializationOptions = new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() }, WriteIndented = true };
 
         public RecipeDataAccess()

@@ -43,7 +43,13 @@ namespace BakerBiz
         private static void StartMenuItemWorkflow(RecipeDataAccess dataAccess)
         {
             MenuItemWorkflow workflow = new MenuItemWorkflow();
-            workflow.Execute(dataAccess);
+            MenuItemWorkflowConsoleProvider inputProvider = new MenuItemWorkflowConsoleProvider();
+            MenuItemWorkflowResult result = workflow.Execute(dataAccess, inputProvider);
+
+            Console.WriteLine("You can make:");
+            Console.WriteLine(result?.TotalCount + " " + result.MenuItem?.Name);
+
+            PrintLeftovers(result.MenuItem, result.TotalCount);
         }
 
         private static WorkflowType ChooseWorkflow()
@@ -58,6 +64,16 @@ namespace BakerBiz
             return (WorkflowType)selection;
         }
 
+        private static void PrintLeftovers(IRecipe recipe, int pieCount)
+        {
+            if (recipe != null && recipe.Ingredients.Any())
+            {
+                foreach (Ingredient ingredient in recipe.Ingredients)
+                {
+                    Console.WriteLine($"{ingredient.CalculateLeftovers(pieCount)} {ingredient.Units}(s) {ingredient.Type} left over.");
+                }
+            }
+        }
 
 
 
