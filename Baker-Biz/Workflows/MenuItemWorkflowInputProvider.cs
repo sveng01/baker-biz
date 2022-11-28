@@ -7,12 +7,12 @@ namespace BakerBiz.Workflows
 {
     public interface IMenuItemWorkflowInputProvider
     {
-        IRecipe? ChooseMenuItem(RecipeDataAccess recipeDataAccess);
+        IRecipe? ChooseMenuItem(IRecipeDataAccess recipeDataAccess);
         int GetIngredientAmount(Ingredient ingredient);
     }
     public class MenuItemWorkflowConsoleProvider : IMenuItemWorkflowInputProvider
     {
-        public IRecipe? ChooseMenuItem(RecipeDataAccess recipeDataAccess)
+        public IRecipe? ChooseMenuItem(IRecipeDataAccess recipeDataAccess)
         {
             IRecipe? menuItem = null;
             Console.WriteLine("Enter:");
