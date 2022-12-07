@@ -7,7 +7,7 @@ namespace BakerBiz.Workflows
 {
     public class MenuItemWorkflow
     {
-        public MenuItemWorkflowResult Execute(IRecipeDataAccess dataAccess, IMenuItemWorkflowInputProvider inputProvider)
+        public MenuItemWorkflowResult? Execute(IRecipeDataAccess dataAccess, IMenuItemWorkflowInputProvider inputProvider)
         {
             IRecipe? menuItem = inputProvider.ChooseMenuItem(dataAccess);
 

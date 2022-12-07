@@ -57,8 +57,8 @@ public class IngredientTests
         Ingredient ingredient = new Ingredient(IngredientType.Butter, 0.75, Units.sticks, true);
 
         double amount = ingredient.CalculateAmount(77);
-        Assert.Equal(amount, 57.75);
-        Assert.Equal(amount, ingredient.Amount);
+        Assert.Equal(57.75, amount);
+        Assert.Equal(ingredient.Amount, amount);
         
     }
 }

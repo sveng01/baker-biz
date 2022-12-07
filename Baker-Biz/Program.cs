@@ -37,17 +37,30 @@ namespace BakerBiz
         private static void StartIngredientWorkflow(RecipeDataAccess dataAccess)
         {
             IngredientsWorkflow workflow = new IngredientsWorkflow();
-            workflow.Execute(dataAccess);
+            var ingredients = workflow.Execute(dataAccess, new IngredientWorkflowInputProvider());
+            PrintIngredientsShoppingList(ingredients);
+        }
+
+        private static void PrintIngredientsShoppingList(IEnumerable<Ingredient> ingredients)
+        {
+            IngredientType[] ingredientTypes = Enum.GetValues<IngredientType>();
+            foreach(IngredientType name in ingredientTypes)
+            {
+                var units = ingredients.FirstOrDefault(x => x.Type == name)?.Units;
+                double sum = ingredients.Where(x => x.Type == name).Sum(y => y.Amount);
+                sum = Math.Ceiling(sum);
+                Console.WriteLine($"You need {sum} {units.ToString()}(s) of {name}");
+            }
         }
 
         private static void StartMenuItemWorkflow(RecipeDataAccess dataAccess)
         {
             MenuItemWorkflow workflow = new MenuItemWorkflow();
             MenuItemWorkflowConsoleProvider inputProvider = new MenuItemWorkflowConsoleProvider();
-            MenuItemWorkflowResult result = workflow.Execute(dataAccess, inputProvider);
+            MenuItemWorkflowResult? result = workflow.Execute(dataAccess, inputProvider);
 
             Console.WriteLine("You can make:");
-            Console.WriteLine(result?.TotalCount + " " + result.MenuItem?.Name);
+            Console.WriteLine(result?.TotalCount + " " + result?.MenuItem?.Name);
 
             PrintLeftovers(result.MenuItem, result.TotalCount);
         }
@@ -57,14 +70,14 @@ namespace BakerBiz
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("Enter 1 to calculate how much you can make with what you have.");
             Console.WriteLine("Enter 2 to calculate how much you need to make what you want.");
-            var selectionEntered = Console.ReadLine();
+            string? selectionEntered = Console.ReadLine();
             int selection = 0;
             InputHelper.ParseInputStrings(selectionEntered, "WorkflowType", out selection);
 
             return (WorkflowType)selection;
         }
 
-        private static void PrintLeftovers(IRecipe recipe, int pieCount)
+        private static void PrintLeftovers(IRecipe? recipe, int pieCount)
         {
             if (recipe != null && recipe.Ingredients.Any())
             {
