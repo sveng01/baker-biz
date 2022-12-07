@@ -9,8 +9,8 @@ namespace Baker_Biz.Tests
     {
         public static RecipeBase GetAppleCiderRecipe()
         {
-            RecipeBase recipeBase = new RecipeBase("Apple Cider", new Ingredient[] 
-            { 
+            RecipeBase recipeBase = new RecipeBase("Apple Cider", new Ingredient[]
+            {
                 new Ingredient(IngredientType.Apples, 2, Units.bags) ,
                 new Ingredient(IngredientType.Sugar, 6, Units.tbsp)
                 });
@@ -47,11 +47,14 @@ namespace Baker_Biz.Tests
         }
     }
 
-    public class MockIngredientsInputProvider : IIngredientWorkflowInputProvider
+    public class MockIngredientsInputProvider : IIngredientsWorkflowInputProvider
     {
-        public int GetRecipeQuantities(RecipeBase menuItem)
+        public IList<Tuple<IRecipe, int>> GetRecipeQuantities(IRecipeDataAccess dataAccess)
         {
-            return 6;
+            return new List<Tuple<IRecipe, int>>()
+            {
+                new Tuple<IRecipe, int>(dataAccess.LoadRecipes()[0], 6)
+            };
         }
     }
 }

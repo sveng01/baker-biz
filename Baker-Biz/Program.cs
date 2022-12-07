@@ -37,19 +37,15 @@ namespace BakerBiz
         private static void StartIngredientWorkflow(RecipeDataAccess dataAccess)
         {
             IngredientsWorkflow workflow = new IngredientsWorkflow();
-            var ingredients = workflow.Execute(dataAccess, new IngredientWorkflowInputProvider());
-            PrintIngredientsShoppingList(ingredients);
+            IngredientsWorkflowInputProvider inputProvider = new IngredientsWorkflowInputProvider();
+            IngredientsWorkflowResults result =  workflow.Execute(dataAccess, inputProvider);
+            PrintIngredientList(result);
         }
 
-        private static void PrintIngredientsShoppingList(IEnumerable<Ingredient> ingredients)
+        private static void PrintIngredientList(IngredientsWorkflowResults results)
         {
-            IngredientType[] ingredientTypes = Enum.GetValues<IngredientType>();
-            foreach(IngredientType name in ingredientTypes)
-            {
-                var units = ingredients.FirstOrDefault(x => x.Type == name)?.Units;
-                double sum = ingredients.Where(x => x.Type == name).Sum(y => y.Amount);
-                sum = Math.Ceiling(sum);
-                Console.WriteLine($"You need {sum} {units.ToString()}(s) of {name}");
+            foreach(Ingredient ingredient in results.Ingredients){
+                Console.WriteLine($"You need {ingredient.Amount} {ingredient.Units.ToString()}(s) of {ingredient.Type}");
             }
         }
 
@@ -62,7 +58,7 @@ namespace BakerBiz
             Console.WriteLine("You can make:");
             Console.WriteLine(result?.TotalCount + " " + result?.MenuItem?.Name);
 
-            PrintLeftovers(result.MenuItem, result.TotalCount);
+            PrintLeftovers(result?.MenuItem, result.TotalCount);
         }
 
         private static WorkflowType ChooseWorkflow()
