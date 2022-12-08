@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/baker-biz.csproj",
+                "${workspaceFolder}/baker-biz/baker-biz.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/baker-biz.csproj",
+                "${workspaceFolder}/Baker-Biz/baker-biz.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/baker-biz.csproj"
+                "${workspaceFolder}/Baker-Biz/baker-biz.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

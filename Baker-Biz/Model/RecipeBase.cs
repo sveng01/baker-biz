@@ -12,8 +12,12 @@ namespace BakerBiz.Model
         [JsonPropertyOrder(1)]
         public IList<Ingredient> Ingredients { get; set; }
 
-        public RecipeBase()
+        public RecipeBase(){}
+
+        public RecipeBase(string name, IEnumerable<Ingredient> ingredients)
         {
+            Name = name;
+            Ingredients = new List<Ingredient>(ingredients.ToArray());
         }
     }
 }
